@@ -40,8 +40,25 @@ namespace ProductManagement
             return _productAppService.GetAsync(id);
         }
 
+        /// <summary>
+        /// 创建商品
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost]
         public Task<ProductDto> CreateAsync(CreateProductDto input)
+        {
+            return _productAppService.CreateAsync(input);
+        }
+
+        /// <summary>
+        /// 创建商品以及XXX
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("CreateWithXX")]
+        public Task<ProductDto> CreateWithXXAsync(CreateProductDto input)
         {
             return _productAppService.CreateAsync(input);
         }

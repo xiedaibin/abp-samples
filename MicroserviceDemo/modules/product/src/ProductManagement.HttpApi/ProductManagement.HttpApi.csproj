@@ -5,6 +5,11 @@
         <RootNamespace />
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile>bin\Debug\ProductManagement.HttpApi.xml</DocumentationFile>
+      <OutputPath>bin\Debug\</OutputPath>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="3.2.1" />
         <ProjectReference Include="..\ProductManagement.Application.Contracts\ProductManagement.Application.Contracts.csproj" />

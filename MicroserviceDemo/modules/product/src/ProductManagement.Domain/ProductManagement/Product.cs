@@ -24,6 +24,16 @@ namespace ProductManagement
 
         public string ImageName { get; private set; }
 
+        /// <summary>
+        /// 产品规格
+        /// </summary>
+        public string Spec { get; private set; }
+
+        /// <summary>
+        /// 产品分类
+        /// </summary>
+        public string Category { get; private set; }
+
         private Product()
         {
             //Default constructor is needed for ORMs.
@@ -31,9 +41,9 @@ namespace ProductManagement
 
         internal Product(
             Guid id,
-            [NotNull] string code, 
-            [NotNull] string name, 
-            float price = 0.0f, 
+            [NotNull] string code,
+            [NotNull] string name,
+            float price = 0.0f,
             int stockCount = 0,
             string imageName = null)
         {

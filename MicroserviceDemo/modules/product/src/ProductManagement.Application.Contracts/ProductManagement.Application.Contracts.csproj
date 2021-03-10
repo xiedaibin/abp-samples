@@ -5,6 +5,11 @@
         <RootNamespace />
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <OutputPath>bin\Debug\</OutputPath>
+      <DocumentationFile>bin\Debug\ProductManagement.Application.Contracts.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Volo.Abp.Ddd.Application" Version="3.2.1" />
         <ProjectReference Include="..\ProductManagement.Domain.Shared\ProductManagement.Domain.Shared.csproj" />

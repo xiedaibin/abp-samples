@@ -28,6 +28,7 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Threading;
+using System.IO;
 
 namespace ProductService.Host
 {
@@ -63,12 +64,17 @@ namespace ProductService.Host
                     options.ApiName = configuration["AuthServer:ApiName"];
                     options.RequireHttpsMetadata = false;
                 });
-
+            var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+            var xmlPath = Path.Combine(basePath, "ProductManagement.HttpApi.xml");   //  添加 swagger xml 注释  这个xml文件开始是不存在的写上项目名.xml即可
+            var xmlpath1 = Path.Combine(basePath, "ProductManagement.Application.Contracts.xml");
             context.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "Product Service API", Version = "v1"});
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
+                //ProductManagement.HttpApi.xml
+                options.IncludeXmlComments(xmlPath);
+                options.IncludeXmlComments(xmlpath1);
             });
 
             Configure<AbpLocalizationOptions>(options =>
