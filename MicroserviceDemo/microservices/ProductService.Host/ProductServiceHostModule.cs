@@ -51,6 +51,13 @@ namespace ProductService.Host
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
+            
+            //Configure<AbpAspNetCoreMvcOptions>(options =>
+            //{
+            //    options
+            //    .ConventionalControllers
+            //    .Create(typeof(ProductManagementApplicationModule).Assembly);
+            //});
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
@@ -69,7 +76,7 @@ namespace ProductService.Host
             var xmlpath1 = Path.Combine(basePath, "ProductManagement.Application.Contracts.xml");
             context.Services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo {Title = "Product Service API", Version = "v1"});
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Service API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
                 //ProductManagement.HttpApi.xml
@@ -112,7 +119,7 @@ namespace ProductService.Host
             app.UseRouting();
             app.UseAuthentication();
             app.UseAbpClaimsMap();
-            
+
             if (MsDemoConsts.IsMultiTenancyEnabled)
             {
                 app.UseMultiTenancy();
